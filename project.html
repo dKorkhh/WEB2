@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Завдання 2</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body class="body">
+        <div class="rect">
+            <div>
+                <div class="input-group">
+                    <input type="text" class="input-field" placeholder="Введіть текст">
+                    <button class="blue-button" data-tooltip="Додати">Додати</button>
+                </div>
+            </div>
+            
+            <div class="input-underline"></div>
+
+            <div class="flex-container">
+                <div class="flex-container_div">
+                    <label class="tomato-text">Помідори</label>
+                    <div class="twoBtn-count">
+                        <div class="circle-button hidden"></div>
+                        <span class="numberBox colorGray"><span>2</span></span>
+                        <div class="circle-button hidden"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bought-button" data-tooltip="Не куплено"><label style="margin-left: 20px; margin-right: 20px;">Не куплено</label></div>
+                </div>
+            </div>
+
+            <div class="input-underline"></div>
+
+            <div class="flex-container">
+                <div class="flex-container_div">
+                    <label class="cookies-text">Печиво</label>
+                    <div class="twoBtn-count">
+                        <div class="btn-morph-red colorRed" data-tooltip="Зменшити">
+                            <div class="numberInside-red">-</div>
+                        </div>
+                        <span class="numberBox colorGray"><span>2</span></span>
+                        <div class="btn-morph-red colorGreen" data-tooltip="Збільшити">
+                            <div class="numberInside-red">+</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <div class="bought-button" data-tooltip="Куплено"><label style="margin-left: 20px; margin-right: 20px;">Куплено</label></div>
+                    <button class="btn-delete" data-tooltip="Видалити">x</button>
+                </div>
+            </div>
+
+            <div class="input-underline"></div>
+
+            <div class="flex-container">
+                <div class="flex-container_div">
+                    <input type="text" class="item-input" style="
+                    border: 1px solid #5da9eb; 
+                    box-shadow: 0 2px 5px rgba(217, 217, 217, 0.305); 
+                    padding-right: 15px;">
+                    <div class="twoBtn-count">
+                        <div class="btn-morph-red dissable" data-tooltip="Недоступно">
+                            <div class="numberInside-red">-</div>
+                        </div>
+                        <span class="numberBox colorGray"><span>1</span></span>
+                        <div class="btn-morph-red colorGreen" data-tooltip="Збільшити">
+                            <div class="numberInside-red">+</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <div class="bought-button" data-tooltip="Куплено"><label style="margin-left: 20px; margin-right: 20px;">Куплено</label></div>
+                    <button class="btn-delete" data-tooltip="Видалити">x</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="rect2">
+            <div class="marging-20"><label class="bold-text-right">Залишилося</label></div>
+            
+            <div class="input-underline"></div>
+            <div class="containerRemain">
+                <button class="quantity-button">
+                    <label class="text-in-button">Печиво</label>
+                    <div class="btn-morph">
+                        <div class="numberInside">2</div>
+                    </div>
+                </button>
+
+                <button class="quantity-button">
+                    <label class="text-in-button">Сир</label>
+                    <div class="btn-morph">
+                        <div class="numberInside">1</div>
+                    </div>
+                </button>
+            </div>
+            <div class="input-underline"></div>
+            <div class="marging-20"><label class="bold-text-right">Куплено</label></div>
+            <div class="input-underline"></div>
+
+            <div class="containerRemain">
+                <button class="quantity-button">
+                    <label class="text-in-button" style="text-decoration: line-through;">Помідори</label>
+                    <div class="btn-morph">
+                        <div class="numberInside" style="text-decoration: line-through;">2</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        
+        <div class="badge-container">
+            <div class="badge">
+                <div class="buy-list">Buy List</div>
+                <div class="hidden-text">
+                    <span class="create-by">Create by:</span>
+                    <span class="name-who-create">Dana Mushchenko</span>
+                </div>
+             </div>
+        </div>
+    </body>
+</html>
