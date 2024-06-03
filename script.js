@@ -1,104 +1,131 @@
-function addItem() {
+
+var clickCount = 0;
+var inputField;
+var idNumber = 1;
+
+function addItem(name) {
     var newItem = document.createElement("div");
+    newItem.id = idNumber.toString();
     var underLine = document.createElement("div");
     underLine.className = "input-underline";
     newItem.appendChild(underLine);
-    // Создаем главный div с классом "flex-container"
+    
     var flexContainer = document.createElement("div");
     flexContainer.className = "flex-container";
 
-    // Создаем div с классом "flex-container_div"
     var flexContainerDiv = document.createElement("div");
     flexContainerDiv.className = "flex-container_div";
 
-    // Создаем label с классом "cookies-text" и id "textInContainer"
-    var cookiesText = document.createElement("label");
-    cookiesText.className = "cookies-text";
-    cookiesText.id = "textInContainer";
-    cookiesText.innerText = document.getElementById("inputField").value;
+    var labelName = document.createElement("label");
+    labelName.className = "cookies-text";
+    labelName.id = "textInContainer" + idNumber.toString();
+    labelName.innerText = name;
+    
+    flexContainerDiv.appendChild(labelName);
 
-    // Добавляем label в "flex-container_div"
-    flexContainerDiv.appendChild(cookiesText);
-
-    // Создаем div с классом "twoBtn-count"
     var twoBtnCount = document.createElement("div");
     twoBtnCount.className = "twoBtn-count";
 
-    // Создаем div с классами "btn-morph-red" и "colorRed"
-    var btnMorphRed1 = document.createElement("div");
-    btnMorphRed1.className = "btn-morph-red colorRed";
-    btnMorphRed1.setAttribute("data-tooltip", "Зменшити");
+    var btnRed1 = document.createElement("div");
+    btnRed1.className = "btn-red dissable";
+    btnRed1.setAttribute("data-tooltip", "Зменшити");
 
-    // Создаем div с классом "numberInside-red"
     var numberInsideRed1 = document.createElement("div");
     numberInsideRed1.className = "numberInside-red";
     numberInsideRed1.innerText = "-";
 
-    // Добавляем "numberInside-red" в "btn-morph-red"
-    btnMorphRed1.appendChild(numberInsideRed1);
 
-    // Добавляем "btn-morph-red" в "twoBtn-count"
-    twoBtnCount.appendChild(btnMorphRed1);
+    btnRed1.appendChild(numberInsideRed1);
 
-    // Создаем span с классом "numberBox colorGray"
+
+    twoBtnCount.appendChild(btnRed1);
+
+
     var numberBox = document.createElement("span");
     numberBox.className = "numberBox colorGray";
 
-    // Создаем span с числом 2
-    var number2 = document.createElement("span");
-    number2.innerText = "0";
 
-    // Добавляем span с числом в "numberBox"
+    var number2 = document.createElement("span");
+    number2.innerText = "1";
+
     numberBox.appendChild(number2);
 
-    // Добавляем "numberBox" в "twoBtn-count"
     twoBtnCount.appendChild(numberBox);
 
-    // Создаем второй div с классами "btn-morph-red" и "colorGreen"
-    var btnMorphRed2 = document.createElement("div");
-    btnMorphRed2.className = "btn-morph-red colorGreen";
-    btnMorphRed2.setAttribute("data-tooltip", "Збільшити");
 
-    // Создаем второй div с классом "numberInside-red"
-    var numberInsideRed2 = document.createElement("div");
-    numberInsideRed2.className = "numberInside-red";
-    numberInsideRed2.innerText = "+";
+    var btnGreen = document.createElement("div");
+    btnGreen.className = "btn-red colorGreen";
+    btnGreen.setAttribute("data-tooltip", "Збільшити");
 
-    // Добавляем второй "numberInside-red" во второй "btn-morph-red"
-    btnMorphRed2.appendChild(numberInsideRed2);
+    var numberInsideGreen = document.createElement("div");
+    numberInsideGreen.className = "numberInside-red";
+    numberInsideGreen.innerText = "+";
 
-    // Добавляем второй "btn-morph-red" в "twoBtn-count"
-    twoBtnCount.appendChild(btnMorphRed2);
+    inputField = document.createElement("input");
+    inputField.className = "item-input input-txt-name active";
+    inputField.id = "inputField" + idNumber.toString();
+    inputField.type = "text";
+    inputField.style.display = "none";
+    flexContainerDiv.appendChild(inputField);
 
-    // Добавляем "twoBtn-count" в "flex-container_div"
+    
+    labelName.addEventListener('click', function() {
+        if (boughtLabel.innerText === "Куплено") {
+            
+            var input = document.getElementById("inputField" + newItem.id),
+                item = document.getElementById("textInContainer" + newItem.id);
+            input.style.display = "flex";
+            item.style.display = "none";
+            input.value = document.getElementById("textInContainer" + newItem.id).innerText;
+            input.focus();
+        }
+    });
+
+
+    inputField.addEventListener('blur', function() {
+        var input = document.getElementById("inputField" + newItem.id),
+            item = document.getElementById("textInContainer" + newItem.id);
+
+        let check = true;
+        for (var i = 1; i < idNumber; i++){
+            if (document.getElementById("textInContainer" + i).innerText === input.value){
+                alert("Товар з такою назвою вже існує");
+                check = false;
+                return;
+            }
+        }
+
+        if (check == true)
+            item.innerText = input.value;
+        document.getElementById('textStatistics' + newItem.id).innerText = input.value;
+        input.style.display = "none";
+        item.style.display = "block";
+    });
+
+    btnGreen.appendChild(numberInsideGreen);
+    twoBtnCount.appendChild(btnGreen);
     flexContainerDiv.appendChild(twoBtnCount);
-
-    // Добавляем "flex-container_div" в "flex-container"
     flexContainer.appendChild(flexContainerDiv);
 
-    // Создаем div с inline стилями
     var flexDiv = document.createElement("div");
     flexDiv.style.display = "flex";
     flexDiv.style.alignItems = "center";
 
-    // Создаем div с классом "bought-button"
     var boughtButton = document.createElement("div");
+    boughtButton.id = idNumber.toString();
     boughtButton.className = "bought-button";
     boughtButton.setAttribute("data-tooltip", "Куплено");
 
-    // Создаем label с inline стилями
     var boughtLabel = document.createElement("label");
     boughtLabel.style.marginLeft = "20px";
     boughtLabel.style.marginRight = "20px";
     boughtLabel.innerText = "Куплено";
 
-    // Добавляем label в "bought-button"
     boughtButton.appendChild(boughtLabel);
 
-    // Добавляем "bought-button" в div с inline стилями
     flexDiv.appendChild(boughtButton);
 
-    // Создаем кнопку с классом "btn-delete"
+
     var btnDelete = document.createElement("button");
     btnDelete.className = "btn-delete";
     btnDelete.setAttribute("data-tooltip", "Видалити");
@@ -106,19 +133,145 @@ function addItem() {
 
     flexDiv.appendChild(btnDelete);
     flexContainer.appendChild(flexDiv);
-
     newItem.appendChild(flexContainer);
     
-    // Добавляем li в список
+    
     document.getElementById("itemList").appendChild(newItem);
     
-    inputField.value = "";
-    inputField.focus();
-  }
+
+    btnDelete.addEventListener('click', function() {
+        newItem.remove();
+        var item = document.getElementById("btnStatistic" + (newItem.id)); 
+        item.remove();
+    });
+
+    boughtButton.addEventListener('click', function(event) {    
+        var item = document.getElementById("btnStatistic" + (newItem.id)); 
+
+        if (boughtLabel.innerText === "Не куплено") {
+            btnDelete.style.display = 'block';
+            boughtLabel.textContent = "Куплено";
+            btnRed1.style.visibility = 'visible';
+            btnGreen.style.visibility = 'visible';
+            labelName.style.textDecoration = 'none';
+
+            addStatistics(newItem.id, "remainList", 
+                document.getElementById('textInContainer' + newItem.id).innerText,
+                false, 
+                document.getElementById("number" + newItem.id).innerText);
+        } 
+        else {
+            btnDelete.style.display = 'none';
+            boughtLabel.textContent = "Не куплено";
+            btnRed1.style.visibility = 'hidden';
+            btnGreen.style.visibility = 'hidden';
+            labelName.style.textDecoration = 'line-through';
+
+            addStatistics(newItem.id, "containerBought", 
+                document.getElementById('textInContainer' + newItem.id).innerText,
+                true, 
+                document.getElementById("number" + newItem.id).innerText);
+        }
+
+        item.remove();
+    });
+
+    btnGreen.addEventListener('click', function() {
+        number2.innerText = parseInt(number2.innerText) + 1;
+        btnRed1.className = "btn-red colorRed";
+        
+        document.getElementById('number' + newItem.id).innerText = number2.innerText;
+    });
+
+    btnRed1.addEventListener('click', function() {
+        if (parseInt(number2.innerText) > 1) {
+            number2.innerText = parseInt(number2.innerText) - 1;
+        
+            document.getElementById('number' + newItem.id).innerText = number2.innerText;
+        }
+        if (parseInt(number2.innerText) === 1){
+            btnRed1.className = "btn-red dissable";
+        }
+    });
+}
+
+function addStatistics(index, list, text, isDecor, number) {
+    var button = document.createElement('button');
+    button.id = "btnStatistic" + index.toString();
+    button.className = 'quantity-button';
+
     
-  // Додаємо обробник подій для клавіші Enter
-  document.getElementById("inputField").addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-      addItem();
+    var label = document.createElement('label');
+    label.id = 'textStatistics' + index.toString();
+    label.className = 'text-in-button';
+    label.innerText = text;
+
+    var btnNumber = document.createElement('div');
+    btnNumber.className = 'btn-number';
+
+    //add id number
+    var numberInside = document.createElement('div');
+    numberInside.className = 'numberInside';
+    numberInside.innerText = number;
+    numberInside.id = 'number' + index.toString();
+
+    if (isDecor === true){
+        label.style.textDecoration = 'line-through';
+        numberInside.style.textDecoration = 'line-through';
     }
-  });
+    else {
+        label.style.textDecoration = 'none';
+        numberInside.style.textDecoration = 'none';
+    }
+
+    btnNumber.appendChild(numberInside);
+    button.appendChild(label);
+    button.appendChild(btnNumber);
+
+    document.getElementById("inputField").value = "";
+    document.getElementById("inputField").focus();
+
+    document.getElementById(list).appendChild(button);
+}
+
+function addAllEl(){
+    if (document.getElementById("inputField").value === "") {
+        alert("Введіть назву товару");
+        return;
+    }
+
+    for (var i = 1; i < idNumber; i++){
+        if (document.getElementById("textInContainer" + i).innerText === document.getElementById("inputField").value){
+            alert("Товар з такою назвою вже існує");
+            return;
+        }
+    }
+
+    addItem(document.getElementById("inputField").value);
+    addStatistics(idNumber, "remainList", 
+        document.getElementById('textInContainer' + idNumber).innerText, false, 1);
+    idNumber++;
+}
+  
+document.getElementById("inputField").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        addAllEl();
+    }
+});
+
+window.onload = function() {
+    addItem('Item1');
+    addStatistics(idNumber, "remainList", 
+    document.getElementById('textInContainer' + idNumber).innerText, false, 1);
+    idNumber++;
+
+    addItem('Item2');
+    addStatistics(idNumber, "remainList", 
+    document.getElementById('textInContainer' + idNumber).innerText, false, 1);
+    idNumber++;
+
+    addItem('Item3');
+    addStatistics(idNumber, "remainList", 
+    document.getElementById('textInContainer' + idNumber).innerText, false, 1); 
+    idNumber++;
+};

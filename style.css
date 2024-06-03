@@ -76,6 +76,12 @@ body {
     margin-right: 10px;
 }
 
+.input-txt-name{
+    border: 1px solid #5da9eb;
+    box-shadow: 0 2px 5px rgba(217, 217, 217, 0.305); 
+    padding-right: 15px;
+}
+
 .flex-container {
     height: 50px;
     display: flex;
@@ -116,6 +122,8 @@ body {
     border-radius: 5px; 
     color: #333; 
     top: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
 
     box-shadow: 0 4px 0px 0px rgb(168, 168, 168); /* Add this line */
 }
@@ -261,10 +269,11 @@ body {
     height: 40px;
 
     align-items: center;
-    margin-right: 5px;
+    margin: 10px;
+
 }
 
-.btn-morph {
+.btn-number {
     width: 26px;
     height: 26px;
     background-color: #EF5350;
@@ -303,7 +312,7 @@ body {
     margin-left: 20px;
 }
 
-.btn-morph-red {
+.btn-red {
     width: 40px;
     height: 36px;
     border-radius: 50%;
@@ -317,7 +326,7 @@ body {
     align-items: center;
 }
 
-.btn-morph-red::after,
+.btn-red::after,
 .blue-button::after  {
     content: attr(data-tooltip);
     /* content: "Tooltip"; */
@@ -338,7 +347,7 @@ body {
     padding: 10px 20px;
 }
 
-.btn-morph-red:hover::after,
+.btn-red:hover::after,
 .blue-button:hover::after {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -346,7 +355,7 @@ body {
 
 .containerRemain {
     display: flex;
-    margin: 20px;
+    flex-wrap: wrap;
 }
 
 .badge-container {
